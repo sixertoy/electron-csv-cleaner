@@ -36,6 +36,7 @@ const installExtensions = async () => {
 */
 
 function createWindow () {
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
     // https://github.com/electron/electron/blob/master/docs/api/browser-window.md
@@ -43,11 +44,11 @@ function createWindow () {
     // icon: '',
     width: 195,
     height: 600,
-    maxWidth: 195,
-    minWidth: 195,
-    maxHeight: 600,
-    minHeight: 600,
-    resizable: false,
+    // maxWidth: 195,
+    // minWidth: 195,
+    // maxHeight: 600,
+    // minHeight: 600,
+    resizable: true,
     fullscreenable: false
   });
 
@@ -55,7 +56,7 @@ function createWindow () {
   const startUrl = process.env.ELECTRON_START_URL || url.format({
     slashes: true,
     protocol: 'file:',
-    pathname: path.join(__dirname, '/../build/index.html')
+    pathname: path.join(__dirname, '/build/index.html')
   });
   mainWindow.loadURL(startUrl);
 
