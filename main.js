@@ -39,7 +39,7 @@ function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     // https://github.com/electron/electron/blob/master/docs/api/browser-window.md
-    // title: '',
+    title: 'CSV Cleaner',
     // icon: '',
     width: 195,
     height: 600,
