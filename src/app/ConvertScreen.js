@@ -3,26 +3,33 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import React, { Component } from 'react';
+import { push } from 'react-router-redux';
 
 // application
 import promisifyFiles from './lib/promisify-files';
-import promisifyWrite from './lib/promisify-write';
-import promisifyDatas from './lib/promisify-datas';
 
 class ConvertScreen extends Component {
 
   constructor (props) {
     super(props);
-    this.state = { selections: [].concat(props.files) };
+    this.state = {
+      delimiter: ';',
+      selections: [].concat(props.files)
+    };
     this.onSelectHandler = this.onSelectHandler.bind(this);
     this.onProceedHandler = this.onProceedHandler.bind(this);
   }
 
   onProceedHandler () {
     const { selections } = this.state;
-    Promise.all(selections.map(promisifyFiles))
-      .then(collections => Promise.all(collections.map(promisifyDatas)))
-      .then(collections => Promise.all(collections.map(promisifyWrite)))
+    const opts = {
+      delimiter: this.state.delimiter,
+      regex: new RegExp(/[\r\n\t"]/, 'gi')
+    };
+    const promises = selections.map(filepath =>
+      promisifyFiles(filepath, opts));
+    Promise.all(promises)
+      .then(() => {})
       .catch((err) => { throw new Error(err); });
   }
 
@@ -36,11 +43,24 @@ class ConvertScreen extends Component {
   }
 
   render () {
-    const { files } = this.props;
     const { selections } = this.state;
+    const { files, cancel } = this.props;
     if (!files) return (<Redirect to="/" />);
     return (
-      <div>
+      <div id="convert-screen">
+        {/*
+        <div id="convert-screen-header">
+          <label htmlFor="delimiter-field">
+            <span>Delimiter</span>
+            <input type="text" name="delimiter-field"
+              maxLength="1" defaultValue=";" />
+          </label>
+          <label htmlFor="replacer-field">
+            <span>Replacer</span>
+            <input type="text" name="replacer-field" defaultValue="\t" />
+          </label>
+        </div>
+        */}
         <div>
           {files.map((file, index) => {
             const key = `file::${index}`;
@@ -58,6 +78,9 @@ class ConvertScreen extends Component {
           })}
         </div>
         <div>
+          <button onClick={cancel}>
+            <span>Cancel</span>
+          </button>
           <button onClick={this.onProceedHandler}>
             <span>Convert</span>
           </button>
@@ -68,6 +91,7 @@ class ConvertScreen extends Component {
 }
 
 ConvertScreen.propTypes = {
+  cancel: PropTypes.func.isRequired,
   files: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.array
@@ -78,7 +102,11 @@ const mapStateToProps = state => ({
   files: state.files
 });
 
+const mapDispatchToProps = dispatch => ({
+  cancel: () => dispatch(push('/'))
+});
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(ConvertScreen);

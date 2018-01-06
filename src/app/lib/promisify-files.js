@@ -1,40 +1,48 @@
+import path from 'path';
+
 const fs = window.require('fs');
 const { URL } = window.require('url');
-const csv = window.require('csvtojson');
+const parse = window.require('csv-parse');
+const stringify = window.require('csv-stringify');
 
-const DELIMITER = ';';
-const REGEX = new RegExp(/[\r\n\t"]/, 'gi');
-const PARSER_OPTIONS = {
-  trim: true,
-  workerNum: 4,
-  flatKeys: true,
-  noHeader: true,
-  delimiter: DELIMITER
-};
+const cleanify = (value, regex, delimiter) => value.split(delimiter)
+  .map(val => val.replace(regex, '').trim())
+  .join(delimiter);
 
-const cleanify = value => value.split(DELIMITER)
-  .map(val => val.replace(REGEX, '').trim())
-  .join(DELIMITER);
+const splitLines = (lines, regex, delimiter) => lines.map(line =>
+  line.map(value => cleanify(value, regex, delimiter)));
 
-const parseContent = cvsstr => new Promise((resolve, reject) => {
-  csv(PARSER_OPTIONS).fromString(cvsstr)
-    .preFileLine(line => cleanify(line))
-    .on('end_parsed', json => resolve(json))
-    .on('done', err => (err ? reject(err) : null));
-});
+const parseFile = (data, regex, delimiter) =>
+  new Promise((resolve, reject) =>
+    parse(data, { delimiter, quote: '', trim: true }, (err, lines) =>
+      (err ? reject(err) : resolve(splitLines(lines, regex, delimiter)))));
 
-const promisifyFiles = (file) => {
-  const promise = new Promise((resolve, reject) => {
-    const fileuri = new URL(`file://${file}`);
-    fs.readFile(fileuri, { encoding: 'utf8' }, (err, data) => {
-      if (err) return reject(err);
-      return parseContent(data)
-        // FIXME -> essayer de ne pas passer le path
-        .then(json => resolve({ data: json, filepath: file }))
-        .catch(reject);
+const stringifyContent = (parsed, delimiter) =>
+  new Promise((resolve, reject) =>
+    stringify(parsed, { delimiter, trim: true }, (err, output) =>
+      (err ? reject(err) : resolve(output))));
+
+const writeFile = (content, filepath) =>
+  new Promise((resolve, reject) => {
+    const dirname = path.dirname(filepath);
+    const basename = path.basename(filepath, '.csv');
+    const fileuri = path.join(dirname, `${basename}_converted.csv`);
+    fs.writeFile(fileuri, content, { encoding: 'utf8' }, err =>
+      (err ? reject(err) : resolve(filepath)));
+  });
+
+const promisifyFiles = (filepath, { delimiter, regex }) =>
+  new Promise((resolve, reject) => {
+    const fileuri = new URL(`file://${filepath}`);
+    return fs.readFile(fileuri, { encoding: 'utf8' }, (err, data) => {
+      if (err) reject(err);
+      else {
+        parseFile(data, regex, delimiter)
+          .then(parsed => stringifyContent(parsed, delimiter))
+          .then(content => writeFile(content, filepath))
+          .catch(reject);
+      }
     });
   });
-  return promise;
-};
 
 export default promisifyFiles;
