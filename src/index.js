@@ -8,7 +8,8 @@ import createHistory from 'history/createBrowserHistory';
 // application
 import './index.css';
 import { configure } from './app/store';
-import MainScreen from './app/MainScreen';
+import DropScreen from './app/DropScreen';
+import ConvertScreen from './app/ConvertScreen';
 import registerServiceWorker from './registerServiceWorker';
 
 // application
@@ -18,7 +19,8 @@ const Root = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <div id="main-container">
-        <Route exact path="/" component={MainScreen} />
+        <Route exact path="/" component={DropScreen} />
+        <Route exact path="/convert" component={ConvertScreen} />
       </div>
     </ConnectedRouter>
   </Provider>

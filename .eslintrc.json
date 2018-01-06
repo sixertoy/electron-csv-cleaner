@@ -32,6 +32,7 @@
       "extensions": [".js", ".jsx"]
     }],
     "react/jsx-first-prop-new-line": [2, "never"],
+    "react/jsx-max-props-per-line": [2, { "maximum": 3, "multiline": true }],
     "react/forbid-prop-types": [1, {
       "forbid": ["any"]
     }]
