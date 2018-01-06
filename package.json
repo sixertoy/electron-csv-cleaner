@@ -1,0 +1,36 @@
+{
+  "name": "src",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./main.js",
+  "homepage": "./",
+  "devDependencies": {
+    "eslint": "^4.14.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "foreman": "^2.0.0",
+    "stylelint-config-standard": "^18.0.0"
+  },
+  "dependencies": {
+    "electron": "^1.7.10",
+    "history": "^4.7.2",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "react-scripts": "^1.0.17",
+    "redux": "^3.7.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "dev": "nf start -p 3000"
+  }
+}
