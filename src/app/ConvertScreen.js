@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import React, { Component } from 'react';
 
+// application
+import promisifyFiles from './lib/promisify-files';
+import promisifyWrite from './lib/promisify-write';
+import promisifyDatas from './lib/promisify-datas';
+
 class ConvertScreen extends Component {
 
   constructor (props) {
@@ -13,11 +18,12 @@ class ConvertScreen extends Component {
     this.onProceedHandler = this.onProceedHandler.bind(this);
   }
 
-  componentDidMount () {}
-
   onProceedHandler () {
     const { selections } = this.state;
-    console.log('selections', selections);
+    Promise.all(selections.map(promisifyFiles))
+      .then(collections => Promise.all(collections.map(promisifyDatas)))
+      .then(collections => Promise.all(collections.map(promisifyWrite)))
+      .catch((err) => { throw new Error(err); });
   }
 
   onSelectHandler (evt) {
