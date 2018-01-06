@@ -17,6 +17,7 @@
     "csv-parse": "^2.0.0",
     "csv-stringify": "^2.0.1",
     "electron": "^1.7.10",
+    "electron-packager": "^10.1.1",
     "history": "^4.7.2",
     "json2csv": "^3.11.5",
     "prop-types": "^15.6.0",
@@ -35,6 +36,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "electron": "electron .",
+    "package": "electron-packager .",
     "dev": "nf start -p 3000"
   }
 }
