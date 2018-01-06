@@ -68,6 +68,8 @@ function createWindow () {
     mainWindow = null;
   });
 
+  mainWindow.openDevTools();
+
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
 
