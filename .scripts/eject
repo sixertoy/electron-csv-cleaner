@@ -6,11 +6,10 @@
 #
 # ------------------------------
 
-# Check is current repository is clean
 git-ensure-clean
-
-# Create an eject branch
+rm -rf build bin
+rm -rf node_modules
+rm yarn.lock
 git co -b ejected
-
-# Eject the project
 react-scripts eject
+yarn install
