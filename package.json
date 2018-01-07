@@ -32,11 +32,12 @@
     "redux": "^3.7.2"
   },
   "scripts": {
-    "start": "nf start -p 3000",
+    "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom",
     "build": "git-ensure-clean && react-scripts build",
     "eject": "sh ./.scripts/eject",
     "electron": "git-ensure-clean && electron .",
-    "package": "git-ensure-clean && electron-packager ./ --package-manager yarn --out ./dist"
+    "package": "git-ensure-clean && electron-packager ./ --package-manager yarn --out ./dist",
+    "dev": "nf start -p 3000"
   }
 }
