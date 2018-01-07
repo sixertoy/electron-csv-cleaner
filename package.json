@@ -35,7 +35,7 @@
     "start": "nf start -p 3000",
     "test": "react-scripts test --env=jsdom",
     "build": "git-ensure-clean && react-scripts build",
-    "eject": "git-ensure-clean && react-scripts eject",
+    "eject": "sh ./.scripts/eject",
     "electron": "git-ensure-clean && electron .",
     "package": "git-ensure-clean && electron-packager ./ --package-manager yarn --out ./dist"
   }

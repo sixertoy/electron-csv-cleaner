@@ -6,4 +6,11 @@
 #
 # ------------------------------
 
+# Check is current repository is clean
+git-ensure-clean
+
+# Create an eject branch
+git co -b ejected
+
+# Eject the project
 react-scripts eject
