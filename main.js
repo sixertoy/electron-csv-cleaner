@@ -19,10 +19,10 @@ function createWindow () {
     // icon: '',
     width: 195,
     height: 600,
-    // maxWidth: 195,
-    // minWidth: 195,
-    // maxHeight: 600,
-    // minHeight: 600,
+    maxWidth: 195,
+    minWidth: 195,
+    maxHeight: 600,
+    minHeight: 600,
     resizable: true,
     fullscreenable: false
   });

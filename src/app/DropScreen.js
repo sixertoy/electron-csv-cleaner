@@ -30,7 +30,20 @@ class DropScreen extends Component {
             .map(fileobj => fileobj.path);
           if (files.length) onUploadFiles(files);
         }} >
-        <p>Drop your files here</p>
+        <div>
+          <p style={{ textAlign: 'center' }}>
+            <i style={{ fontSize: '3em' }}
+              className="icon-upload-cloud" />
+          </p>
+          <p style={{
+            opacity: 0.45,
+            fontSize: '0.7em',
+            textAlign: 'center',
+            textTransform: 'uppercase'
+          }}>
+            <span>Drop your files here</span>
+          </p>
+        </div>
       </div>
     );
   }
