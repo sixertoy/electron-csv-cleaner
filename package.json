@@ -1,5 +1,6 @@
 {
-  "name": "src",
+  "name": "csv-cleaner",
+  "productName": "CSV Cleaner",
   "version": "0.1.0",
   "private": true,
   "main": "./main.js",
