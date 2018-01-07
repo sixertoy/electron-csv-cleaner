@@ -1,4 +1,4 @@
-@import url('./css/fontello-embedded.css');
+@import url('./css/photon.css');
 
 html,
 body {
@@ -13,9 +13,17 @@ body {
   background-color: #F1F1F1;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
 #root,
 #main-container {
   height: 100%;
   min-height: 100%;
-  overflow: hidden;
 }

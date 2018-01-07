@@ -17,14 +17,10 @@ function createWindow () {
     // https://github.com/electron/electron/blob/master/docs/api/browser-window.md
     title: 'CSV Cleaner',
     // icon: '',
-    width: 195,
+    width: 210,
     height: 600,
-    maxWidth: 195,
-    minWidth: 195,
-    maxHeight: 600,
-    minHeight: 600,
-    resizable: true,
-    fullscreenable: false
+    fullscreenable: false,
+    resizable: process.env.NODE_ENV === 'development'
   });
 
   // and load the index.html of the app.

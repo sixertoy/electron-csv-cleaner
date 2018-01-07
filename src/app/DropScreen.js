@@ -27,13 +27,13 @@ class DropScreen extends Component {
           // console.log('evt.dataTransfer.files', evt.dataTransfer.files);
           const files = Array.from(evt.dataTransfer.files)
             .filter(fileobj => (fileobj.type === 'text/csv'))
-            .map(fileobj => fileobj.path);
+            .map(({ path, size }) => ({ path, size }));
           if (files.length) onUploadFiles(files);
         }} >
         <div>
           <p style={{ textAlign: 'center' }}>
             <i style={{ fontSize: '3em' }}
-              className="icon-upload-cloud" />
+              className="icon icon-upload-cloud" />
           </p>
           <p style={{
             opacity: 0.45,
