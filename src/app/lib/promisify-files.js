@@ -1,9 +1,11 @@
 import path from 'path';
 
-const fs = window.require('fs');
-const { URL } = window.require('url');
-const parse = window.require('csv-parse');
-const stringify = window.require('csv-stringify');
+const electron = window.require('electron');
+
+const fs = electron.remote.require('fs');
+const { URL } = electron.remote.require('url');
+const parse = electron.remote.require('csv-parse');
+const stringify = electron.remote.require('csv-stringify');
 
 const cleanify = (value, regex, delimiter) => value.split(delimiter)
   .map(val => val.replace(regex, '').trim())
