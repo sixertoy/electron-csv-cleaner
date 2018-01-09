@@ -3,11 +3,13 @@
 const net = require('net');
 const { exec } = require('child_process');
 
+let startedElectron = false;
 const client = new net.Socket();
-const port = process.env.PORT ? (process.env.PORT - 100) : 3000;
+const port = process.env.PORT
+  ? (process.env.PORT - 100)
+  : 3000;
 process.env.ELECTRON_START_URL = `http://localhost:${port}`;
 
-let startedElectron = false;
 const tryConnection = () => client.connect({ port }, () => {
   client.end();
   if (!startedElectron) {
@@ -17,8 +19,7 @@ const tryConnection = () => client.connect({ port }, () => {
   }
 });
 
-tryConnection();
+// client.on('error', () => setTimeout(tryConnection, 1000));
+client.on('error', () => {});
 
-client.on('error', () => {
-  setTimeout(tryConnection, 1000);
-});
+tryConnection();

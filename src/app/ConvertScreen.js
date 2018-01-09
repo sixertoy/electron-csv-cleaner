@@ -49,10 +49,10 @@ class ConvertScreen extends Component {
   }
 
   onProceedHandler () {
-    const { selections, regex } = this.state;
+    const { selections } = this.state;
     const opts = {
       delimiter: this.state.delimiter,
-      regex: new RegExp(regex, 'gi')
+      regex: new RegExp(/[\r\n\t"]/, 'gi')
     };
     const promises = selections.map(filepath =>
       promisifyFiles(filepath, opts));
@@ -75,23 +75,23 @@ class ConvertScreen extends Component {
     this.setState({ delimiter: value });
   }
 
-  renderTableItem (file, index) {
+  renderTableItem (fileobj, index) {
     const { selections } = this.state;
     const key = `file::${index}`;
-    const size = byteSize(file.size, { units: 'iec_octet' });
-    const ischecked = (selections.indexOf(file.path) !== -1);
+    const size = byteSize(fileobj.size, { units: 'iec_octet' });
+    const ischecked = (selections.indexOf(fileobj) !== -1);
     return (
       <tr key={key}>
         <td style={styles.selectcol}>
           <input type="checkbox" checked={ischecked}
-            name={key} value={file.path} onChange={this.onSelectHandler} />
+            name={key} value={fileobj.path} onChange={this.onSelectHandler} />
         </td>
         <td style={styles.filecol}>
-          <em style={styles.pathline}>{path.dirname(file.path)}</em>
-          <span>{path.basename(file.path, path.extname(file.path))}</span>
+          <em style={styles.pathline}>{path.dirname(fileobj.path)}</em>
+          <span>{path.basename(fileobj.path, path.extname(fileobj.path))}</span>
         </td>
         <td style={styles.sizecol}>
-          <span>{`${size.value} ${size.unit}`}</span>
+          <span>{size.value}{size.unit}</span>
         </td>
       </tr>
     );
@@ -119,6 +119,7 @@ class ConvertScreen extends Component {
               </div>
               <div className="form-control">
                 <input type="text" className="form-control"
+                  onChange={() => {}}
                   value={this.state.regex} />
               </div>
             </div>

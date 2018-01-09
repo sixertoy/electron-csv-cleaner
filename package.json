@@ -6,12 +6,13 @@
   "main": "./main.js",
   "homepage": "./",
   "devDependencies": {
+    "electron-packager": "^10.1.1",
     "eslint": "^4.14.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
-    "foreman": "^2.0.0",
+    "foreman": "https://github.com/pryv/node-foreman",
     "stylelint-config-standard": "^18.0.0"
   },
   "dependencies": {
@@ -19,7 +20,6 @@
     "csv-parse": "^2.0.0",
     "csv-stringify": "^2.0.1",
     "electron": "^1.7.10",
-    "electron-packager": "^10.1.1",
     "history": "^4.7.2",
     "json2csv": "^3.11.5",
     "prop-types": "^15.6.0",
@@ -37,7 +37,7 @@
     "test": "react-scripts test --env=jsdom",
     "build": "git-ensure-clean && react-scripts build",
     "eject": "sh ./.scripts/eject",
-    "electron": "git-ensure-clean && electron .",
+    "electron": "electron .",
     "package": "git-ensure-clean && electron-packager ./ --package-manager yarn --out ./dist",
     "dev": "nf start -p 3000"
   }

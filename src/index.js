@@ -20,7 +20,7 @@ const Root = () => (
     <ConnectedRouter history={history}>
       <div id="main-container">
         <Route exact path="/" component={DropScreen} />
-        <Route exact path="/convert" component={ConvertScreen} />
+        <Route path="/convert" component={ConvertScreen} />
       </div>
     </ConnectedRouter>
   </Provider>

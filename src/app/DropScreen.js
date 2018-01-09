@@ -24,7 +24,6 @@ class DropScreen extends Component {
         onDragLeave={evt => mockDefaultBehavior(evt)}
         onDrop={(evt) => {
           evt.preventDefault();
-          // console.log('evt.dataTransfer.files', evt.dataTransfer.files);
           const files = Array.from(evt.dataTransfer.files)
             .filter(fileobj => (fileobj.type === 'text/csv'))
             .map(({ path, size }) => ({ path, size }));

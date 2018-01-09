@@ -24,24 +24,24 @@ const stringifyContent = (parsed, delimiter) =>
     stringify(parsed, { delimiter, trim: true }, (err, output) =>
       (err ? reject(err) : resolve(output))));
 
-const writeFile = (content, filepath) =>
+const writeFile = (content, fileobj) =>
   new Promise((resolve, reject) => {
-    const dirname = path.dirname(filepath);
-    const basename = path.basename(filepath, '.csv');
+    const dirname = path.dirname(fileobj.path);
+    const basename = path.basename(fileobj.path, '.csv');
     const fileuri = path.join(dirname, `${basename}_converted.csv`);
     fs.writeFile(fileuri, content, { encoding: 'utf8' }, err =>
-      (err ? reject(err) : resolve(filepath)));
+      (err ? reject(err) : resolve(fileobj)));
   });
 
-const promisifyFiles = (filepath, { delimiter, regex }) =>
+const promisifyFiles = (fileobj, { delimiter, regex }) =>
   new Promise((resolve, reject) => {
-    const fileuri = new URL(`file://${filepath}`);
+    const fileuri = new URL(`file://${fileobj.path}`);
     return fs.readFile(fileuri, { encoding: 'utf8' }, (err, data) => {
       if (err) reject(err);
       else {
         parseFile(data, regex, delimiter)
           .then(parsed => stringifyContent(parsed, delimiter))
-          .then(content => writeFile(content, filepath))
+          .then(content => writeFile(content, fileobj))
           .catch(reject);
       }
     });
