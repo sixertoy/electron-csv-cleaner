@@ -15,7 +15,7 @@
     "stylelint-config-standard": "^18.0.0"
   },
   "dependencies": {
-    "byte-size": "^4.0.2",
+    "bytes": "^3.0.0",
     "csv-parse": "^2.0.0",
     "csv-stringify": "^2.0.1",
     "electron": "^1.7.10",

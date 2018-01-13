@@ -1,7 +1,7 @@
 import path from 'path';
+import * as bytes from 'bytes';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as byteSize from 'byte-size';
 import { Redirect } from 'react-router';
 import React, { Component } from 'react';
 import { push } from 'react-router-redux';
@@ -78,7 +78,6 @@ class ConvertScreen extends Component {
   renderTableItem (fileobj, index) {
     const { selections } = this.state;
     const key = `file::${index}`;
-    const size = byteSize(fileobj.size, { units: 'iec_octet' });
     const ischecked = (selections.indexOf(fileobj) !== -1);
     return (
       <tr key={key}>
@@ -91,7 +90,7 @@ class ConvertScreen extends Component {
           <span>{path.basename(fileobj.path, path.extname(fileobj.path))}</span>
         </td>
         <td style={styles.sizecol}>
-          <span>{size.value}{size.unit}</span>
+          <span>{bytes(fileobj.size)}</span>
         </td>
       </tr>
     );
