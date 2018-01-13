@@ -20,7 +20,7 @@ function createWindow () {
     width: 210,
     height: 600,
     fullscreenable: false,
-    resizable: process.env.NODE_ENV === 'development'
+    resizable: (process.env.NODE_ENV === 'development')
   });
 
   // and load the index.html of the app.
