@@ -49,10 +49,13 @@ class ConvertScreen extends Component {
   }
 
   onProceedHandler () {
-    const { selections } = this.state;
+    const {
+      regex,
+      selections
+    } = this.state;
     const opts = {
       delimiter: this.state.delimiter,
-      regex: new RegExp(/[\r\n\t"]/, 'gi')
+      regex: new RegExp(`[${regex}]`, 'gi')
     };
     const promises = selections.map(filepath =>
       promisifyFiles(filepath, opts));
@@ -68,6 +71,11 @@ class ConvertScreen extends Component {
         ? selections.filter(value => (value !== file))
         : selections.concat([file])
     }));
+  }
+
+  onRegexHandler (evt) {
+    const { value } = evt.target;
+    this.setState({ regex: value });
   }
 
   onDelimiterHandler (evt, value) {
@@ -118,7 +126,7 @@ class ConvertScreen extends Component {
               </div>
               <div className="form-control">
                 <input type="text" className="form-control"
-                  onChange={() => {}}
+                  onChange={evt => this.onRegexHandler(evt)}
                   value={this.state.regex} />
               </div>
             </div>
