@@ -11,18 +11,18 @@ const path = require('path');
 const { createWindowsInstaller } = require('electron-winstaller');
 
 function getInstallerConfig () {
-  console.log('creating windows installer')
-  const inputpath = path.join('./')
-  const outputpath = path.join(inputpath, 'release-builds')
+  console.log('creating windows installer');
+  const rootpath = path.join('./')
+  const outputpath = path.join(rootpath, 'release-builds')
 
   return Promise.resolve({
     noMsi: true,
     authors: 'IZIGES',
-    appDirectory: path.join(outputpath, 'Electron-tutorial-app-win32-ia32/'),
     exe: 'electron-tutorial-app.exe',
     setupExe: 'ElectronTutorialAppInstaller.exe',
-    outputDirectory: path.join(outputpath, 'windows-installer'),
-    // setupIcon: path.join(inputpath, 'assets', 'icons', 'win', 'icon.ico')
+    outputDirectory: path.join(outputpath, 'release-builds', 'windows-installer'),
+    appDirectory: path.join(rootpath, 'releases', 'Electron-tutorial-app-win32-ia32/'),
+    // setupIcon: path.join(rootpath, 'assets', 'icons', 'win', 'icon.ico')
   });
 }
 
