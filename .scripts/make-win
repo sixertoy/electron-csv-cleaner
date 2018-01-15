@@ -7,23 +7,16 @@
   *
   *
 ------------------------------------------------ */
+const cwd = process.cwd();
 const path = require('path');
 const { createWindowsInstaller } = require('electron-winstaller');
 
 function getInstallerConfig () {
-  console.log('creating windows installer');
+  console.log('Creating windows installer');
   const rootpath = path.join('./')
   const outputpath = path.join(rootpath, 'release-builds')
 
-  return Promise.resolve({
-    noMsi: true,
-    authors: 'IZIGES',
-    exe: 'csv-cleaner.exe',
-    setupExe: 'csv-cleaner-win32-x64.exe',
-    outputDirectory: path.join('.', '..', 'release-builds'),
-    appDirectory: path.join('.', '..', 'releases', 'csv-cleaner-win32-x64')
-    // setupIcon: path.join(rootpath, 'assets', 'icons', 'win', 'icon.ico')
-  });
+  return Promise.resolve();
 }
 
 getInstallerConfig()

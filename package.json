@@ -39,7 +39,7 @@
     "build": "git-ensure-clean && react-scripts build",
     "eject": "sh ./.scripts/eject",
     "electron": "electron .",
-    "pack-mac": "git-ensure-clean && electron-packager ./ --package-manager yarn --out ./releases",
+    "pack-mac": "git-ensure-clean && node ./scripts/make-osx",
     "pack-win": "git-ensure-clean && electron-packager ./ --platform=win32 --package-manager yarn --out ./releases",
     "dev": "nf start -p 3000"
   }
