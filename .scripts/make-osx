@@ -13,5 +13,5 @@ packager({
   out: path.join(cwd, 'releases')
 })
 .then((apppaths) => {
-  console.log('apppaths', apppaths);
+  console.log('Application packaged with success');
 });
