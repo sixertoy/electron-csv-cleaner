@@ -2,7 +2,7 @@
 
 /* ------------------------------------------------
   *
-  *
+  * export WINEARCH=win64
   * yarn add electron-winstaller
   *
   *
@@ -18,10 +18,10 @@ function getInstallerConfig () {
   return Promise.resolve({
     noMsi: true,
     authors: 'IZIGES',
-    exe: 'electron-tutorial-app.exe',
-    setupExe: 'ElectronTutorialAppInstaller.exe',
-    outputDirectory: path.join(outputpath, 'release-builds', 'windows-installer'),
-    appDirectory: path.join(rootpath, 'releases', 'Electron-tutorial-app-win32-ia32/'),
+    exe: 'csv-cleaner.exe',
+    setupExe: 'csv-cleaner-win32-x64.exe',
+    outputDirectory: path.join('.', '..', 'release-builds'),
+    appDirectory: path.join('.', '..', 'releases', 'csv-cleaner-win32-x64')
     // setupIcon: path.join(rootpath, 'assets', 'icons', 'win', 'icon.ico')
   });
 }
