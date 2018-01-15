@@ -1,18 +1,34 @@
-import { MSICreator } from 'electron-wix-msi';
+#!/usr/bin/env node
 
-// Step 1: Instantiate the MSICreator
-const msiCreator = new MSICreator({
-  version: '0.1.0',
-  name: 'CSV Cleaner',
-  manufacturer: 'IZIGES',
-  exe: 'csvcleaner-win32-x64',
-  appDirectory: '/buils/csv-cleaner-win32',
-  description: 'My amazing Kitten simulator',
-  outputDirectory: '/make'
-});
+/* ------------------------------------------------
+  *
+  *
+  * yarn add electron-winstaller
+  *
+  *
+------------------------------------------------ */
+const path = require('path');
+const { createWindowsInstaller } = require('electron-winstaller');
 
-// Step 2: Create a .wxs template file
-await msiCreator.create();
+function getInstallerConfig () {
+  console.log('creating windows installer')
+  const inputpath = path.join('./')
+  const outputpath = path.join(inputpath, 'release-builds')
 
-// Step 3: Compile the template to a .msi file
-await msiCreator.compile();
+  return Promise.resolve({
+    noMsi: true,
+    authors: 'IZIGES',
+    appDirectory: path.join(outputpath, 'Electron-tutorial-app-win32-ia32/'),
+    exe: 'electron-tutorial-app.exe',
+    setupExe: 'ElectronTutorialAppInstaller.exe',
+    outputDirectory: path.join(outputpath, 'windows-installer'),
+    // setupIcon: path.join(inputpath, 'assets', 'icons', 'win', 'icon.ico')
+  });
+}
+
+getInstallerConfig()
+  .then(createWindowsInstaller)
+  .catch((error) => {
+    console.error(error.message || error)
+    process.exit(1)
+  });
