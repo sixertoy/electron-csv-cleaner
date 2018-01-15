@@ -40,7 +40,7 @@
     "eject": "sh ./.scripts/eject",
     "electron": "electron .",
     "pack-mac": "git-ensure-clean && node ./.scripts/make-osx",
-    "pack-win": "git-ensure-clean && node ./.scripts/make-win",
+    "pack-win": "node ./.scripts/make-win",
     "dev": "nf start -p 3000"
   }
 }

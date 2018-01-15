@@ -10,6 +10,7 @@
 const cwd = process.cwd();
 const path = require('path');
 const packager = require('electron-packager');
+const { createWindowsInstaller } = require('electron-winstaller');
 
 packager({
   // available options
@@ -20,7 +21,7 @@ packager({
   out: path.join(cwd, 'releases')
 })
 .then((apppaths) => {
-  console.log('Application packaged with success');
+  console.log('Application packed with success');
   return createWindowsInstaller({
     noMsi: true,
     authors: 'IZIGES',
@@ -38,22 +39,4 @@ packager({
 .catch((error) => {
   console.error(error.message || error)
   process.exit(1)
-});;
-
-/*
-const cwd = process.cwd();
-const path = require('path');
-const { createWindowsInstaller } = require('electron-winstaller');
-
-function getInstallerConfig () {
-  console.log('Creating windows installer');
-  const rootpath = path.join('./')
-  const outputpath = path.join(rootpath, 'release-builds')
-
-  return Promise.resolve();
-}
-
-getInstallerConfig()
-  .then(createWindowsInstaller)
-
-*/
+});
