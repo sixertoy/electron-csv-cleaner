@@ -20,7 +20,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-.htpasswd
+.htaccess
 phpinfo.php
 
 # .csvcleaner est un .htpasswd
