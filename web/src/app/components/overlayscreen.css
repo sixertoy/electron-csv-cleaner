@@ -1,0 +1,25 @@
+#overlayscreen {
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+#overlayscreen .error {
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  border-radius: 4px;
+  background-color: #EB3941;
+}
+
+#overlayscreen .error button {
+  color: white;
+  outline: none;
+  cursor: pointer;
+  margin-top: 12px;
+  padding: 7px 40px;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}

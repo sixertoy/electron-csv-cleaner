@@ -10,7 +10,6 @@ import createHistory from 'history/createBrowserHistory';
 import './index.css';
 import { configure } from './app/store';
 import Application from './app/Application';
-import registerServiceWorker from './registerServiceWorker';
 
 // application
 const history = createHistory();
@@ -18,7 +17,7 @@ const store = configure(history);
 const Root = () => (
   <Provider store={store}>
     <ConnectedRouter history={history} >
-      <div id="react-container" className="flex-columns">
+      <div id="react-container" className="relative flex-columns">
         <Route path="/" component={Application} />
       </div>
     </ConnectedRouter>
@@ -29,4 +28,3 @@ ReactDOM.render(
   <Root />,
   document.getElementById('root')
 );
-registerServiceWorker();

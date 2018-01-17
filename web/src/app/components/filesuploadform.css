@@ -12,6 +12,10 @@
   background-color: #0F7FB4;
 }
 
+#filesuploadform.error {
+  background-color: #EB3941;
+}
+
 #filesuploadform label span {
   display: block;
   margin-top: 3px;

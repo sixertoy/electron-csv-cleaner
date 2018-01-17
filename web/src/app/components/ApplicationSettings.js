@@ -1,6 +1,8 @@
 import React from 'react';
 
-const ApplicationSettings = () => (
+const ApplicationSettings = ({
+
+}) => (
   <div id="application-settings">
     <header className="toolbar toolbar-header">
       <div className="toolbar-actions">

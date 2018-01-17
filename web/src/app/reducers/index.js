@@ -14,19 +14,19 @@ const loading = (state = false, action) => {
 
 const files = (state = [], action) => {
   switch (action.type) {
-  case 'onFileUploading':
-    return state.concat(action.files);
+  case 'onFileUploaded':
+    return state.concat([action.file]);
   default:
     return state;
   }
 };
 
-const selections = (state = [], action) => {
+const error = (state = false, action) => {
   switch (action.type) {
-  case 'onSelectFile':
-    return (state.indexOf(action.name) !== -1)
-      ? state.filter(val => (val !== action.name))
-      : state.concat([action.name]);
+  case 'onDiscardError':
+    return false;
+  case 'onLoadingError':
+    return action.message;
   default:
     return state;
   }
@@ -34,8 +34,8 @@ const selections = (state = [], action) => {
 
 export const reducers = combineReducers({
   files,
+  error,
   loading,
-  selections,
   // !!! always last
   router: routerReducer
 });

@@ -18,14 +18,24 @@ class FilesUploadForm extends Component {
     this.props.onUploadFile(files);
   }
 
-  render () {
+  renderFileIput () {
     return (
-      <div id="filesuploadform">
+      <input type="file" name="file" id="fileuploadinput"
+        onChange={this.onFileUploadChange}
+        ref={(input) => { this.fileinput = input; }} />
+    );
+  }
+
+  render () {
+    const {
+      error,
+      loading
+    } = this.props;
+    return (
+      <div id="filesuploadform" className={`${error ? 'error' : ''}`}>
         <label htmlFor="fileuploadinput">
           <span><i className="icon icon-upload-cloud" /></span>
-          <input type="file" name="file" id="fileuploadinput"
-            onChange={this.onFileUploadChange}
-            ref={(input) => { this.fileinput = input; }} />
+          {(error || loading) ? null : this.renderFileIput()}
         </label>
       </div>
     );
@@ -33,14 +43,24 @@ class FilesUploadForm extends Component {
 }
 
 FilesUploadForm.propTypes = {
-  onUploadFile: PropTypes.func.isRequired
+  loading: PropTypes.bool.isRequired,
+  onUploadFile: PropTypes.func.isRequired,
+  error: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string
+  ]).isRequired
 };
+
+const mapStateToProps = state => ({
+  error: state.error,
+  loading: state.loading
+});
 
 const mapDispatchToProps = dispatch => ({
   onUploadFile: files => dispatch(uploadFile(files))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(FilesUploadForm);

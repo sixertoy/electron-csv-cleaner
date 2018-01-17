@@ -5,21 +5,15 @@ import PropTypes from 'prop-types';
 import './applicationfooter.css';
 
 const ApplicationFooter = ({
-  onSave,
-  onCancel
+  onClearHandler
 }) => (
   <div id="application-footer">
     <footer className="toolbar toolbar-footer">
       <div className="toolbar-actions">
-        <button onClick={onCancel}
+        <button onClick={onClearHandler}
           className="btn btn-default">
           <i className="icon icon-trash" />
           <span>Clear</span>
-        </button>
-        <button onClick={onSave}
-          className="btn btn-primary pull-right">
-          <i className="icon icon-floppy" style={{ color: '#FFFFFF' }} />
-          <span>Save</span>
         </button>
       </div>
     </footer>
@@ -27,8 +21,7 @@ const ApplicationFooter = ({
 );
 
 ApplicationFooter.propTypes = {
-  onSave: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired
+  onClearHandler: PropTypes.func.isRequired
 };
 
 export default ApplicationFooter;

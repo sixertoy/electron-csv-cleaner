@@ -6,6 +6,7 @@ import { push } from 'react-router-redux';
 // application
 import './application.css';
 import FilesTable from './components/FilesTable';
+import OverlayScreen from './components/OverlayScreen';
 import FilesUploadForm from './components/FilesUploadForm';
 import ApplicationFooter from './components/ApplicationFooter';
 // import promisifyFiles from './lib/promisify-files';
@@ -24,8 +25,8 @@ class MainScreen extends Component {
     // this.onProceedHandler = this.onProceedHandler.bind(this);
   }
 
+  /*
   onProceedHandler () {
-    /*
     const {
       regex,
       selections
@@ -39,18 +40,6 @@ class MainScreen extends Component {
     Promise.all(promises)
       .then(() => {})
       .catch((err) => { throw new Error(err); });
-      */
-  }
-
-  onSelectHandler (evt) {
-    /*
-    const file = evt.target.value;
-    this.setState(({ selections }) => ({
-      selections: (selections.indexOf(file) !== -1)
-        ? selections.filter(value => (value !== file))
-        : selections.concat([file])
-    }));
-    */
   }
 
   onRegexHandler (evt) {
@@ -61,25 +50,35 @@ class MainScreen extends Component {
   onDelimiterHandler (evt, value) {
     // evt.preventDefault();
     // this.setState({ delimiter: value });
-  }
-
-  render () {
     // const { files, cancel } = this.props;
     // const iscomma = (this.state.delimiter === ',') ? 'active' : '';
     // const issemicolon = (this.state.delimiter === ';') ? 'active' : '';
     // if (!files) return (<Redirect to="/" />);
+  }
+  */
+
+  render () {
+    const {
+      error,
+      loading
+    } = this.props;
     return [
+      (!loading && !error) ? null : <OverlayScreen key="overlayscreen" />,
       <FilesUploadForm key="uploadform" />,
       <div className="flex-rows" key="filestable">
         <FilesTable />
-        <ApplicationFooter onSave={() => {}} onCancel={() => {}} />
+        <ApplicationFooter onClearHandler={() => {}} />
       </div>
-    ];
+    ].filter(notnull => notnull);
   }
 }
 
 MainScreen.propTypes = {
-  cancel: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string
+  ]).isRequired,
   files: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.array
@@ -87,7 +86,9 @@ MainScreen.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  files: state.files
+  files: state.files,
+  error: state.error,
+  loading: state.loading
 });
 
 const mapDispatchToProps = dispatch => ({
