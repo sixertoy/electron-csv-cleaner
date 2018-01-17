@@ -29,7 +29,6 @@ const fileDeleted = fileid => ({
 const onFetchResponse = (response, asblob = false) => {
   switch (response.status) {
   case 200:
-    console.log('response', response);
     return asblob
       ? response.blob()
       : response.json();
@@ -62,8 +61,7 @@ export const downloadFile = id => (dispatch) => {
       a.download = 'download.csv';
       a.click();
       window.URL.revokeObjectURL(url);
-      // dispatch(loadingComplete());
-      // dispatch(fileDeleted(id));
+      dispatch(loadingComplete());
     })
     .catch((err) => {
       dispatch(loadingComplete());
@@ -87,6 +85,7 @@ export const deleteFile = id => (dispatch) => {
     .catch((err) => {
       dispatch(loadingComplete());
       dispatch(loadingError(err.message));
+      dispatch(fileDeleted(id));
     });
 };
 

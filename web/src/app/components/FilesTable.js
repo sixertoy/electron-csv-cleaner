@@ -4,7 +4,6 @@ import orderby from 'lodash.orderby';
 import { connect } from 'react-redux';
 
 import './filestable.css';
-// import { BASE_URI } from './../constants';
 import timestamp from './../lib/timestamp';
 import {
   deleteFile,
@@ -57,13 +56,6 @@ const FilesTable = ({
                 <i className="icon icon-install" />
                 <span>Download</span>
               </button>
-              {/*
-              <a download className="btn button-positive"
-                href={`${BASE_URI}/uploads/${fileobj.id}`}>
-                <i className="icon icon-install" />
-                <span>Download</span>
-              </a>
-              */}
             </td>
           </tr>
         ))}

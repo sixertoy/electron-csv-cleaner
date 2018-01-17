@@ -23,6 +23,6 @@ unlink($file);
 $file = './uploads/'.$fileid.'-converted.csv';
 $exists = file_exists($file);
 if ($exists) unlink($file);
-sleep(3);
+sleep(1.5);
 send_response($fileid, false);
 exit;

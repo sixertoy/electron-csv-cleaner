@@ -4,12 +4,12 @@ $_END_LINE = '\n';
 $_ENCLOSURE = chr(0);
 $_SEARCHES = array('\t', '\n', '"');
 
-if (!isset($_GET['fileid'])) {
+if (!isset($_POST['fileid'])) {
   http_response_code(404);
   exit;
 }
 
-$fileid = $_GET['fileid'];
+$fileid = $_POST['fileid'];
 $file = './uploads/'.$fileid.'.csv';
 $exists = file_exists($file);
 if (!$exists) {
@@ -38,7 +38,12 @@ if (!$exists) {
   }
   fclose($outputcsv);
 }
+
 // on recupere le contenu du fichier on l'envoi au navigateur
+header('Content-type: text/csv');
+header('Content-Disposition: attachment; filename='.$outputfile.'.csv');
+header('Pragma: no-cache');
+header('Expires: 0');
 $content = file_get_contents($outputfile);
 echo $content;
 exit;

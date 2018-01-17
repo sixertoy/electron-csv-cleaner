@@ -15,6 +15,6 @@ $id = time();
 $outputfile = './uploads/'.$id.'.csv';
 $postfilename = $_FILES['file']['tmp_name'];
 move_uploaded_file($postfilename, $outputfile);
-sleep(3);
+sleep(1.5);
 send_response($id, false);
 exit;
