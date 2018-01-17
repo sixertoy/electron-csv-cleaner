@@ -1,0 +1,22 @@
+#filesuploadform {
+  flex: 0;
+  color: white;
+  width: 400px;
+  height: 100%;
+  display: flex;
+  min-width: 400px;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #0F7FB4;
+}
+
+#filesuploadform label span {
+  display: block;
+  margin-top: 3px;
+}
+
+#filesuploadform .icon-upload-cloud {
+  font-size: 5em;
+}
