@@ -1,5 +1,5 @@
-const timestamp = time => new Date(time)
-  .toLocaleDateString('fr-FR', {
+const timestamp = (time, short = false) => new Date(time)
+  .toLocaleDateString('fr-FR', short ? {} : {
     month: 'short',
     day: 'numeric',
     year: 'numeric',

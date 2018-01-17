@@ -20,8 +20,8 @@ a.btn {
 
 .btn .icon {
   color: white;
-  margin-right: 7px;
 }
+.btn .icon ~ span { margin-left: 7px; }
 
 .button-warning {
   background-color: #FCAA0E;
@@ -75,4 +75,45 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+}
+
+.hide-on-large {
+  display: none;
+  visibility: hidden;
+}
+
+@media (max-width: 800px) {
+  .hide-on-small {
+    display: none;
+    visibility: hidden;
+  }
+
+  .hide-on-large {
+    display: inherit;
+    visibility: visible;
+  }
+
+  #react-container {
+    flex-direction: column;
+  }
+
+  #filesuploadform {
+    flex: 1 !important;
+    width: auto !important;
+    height: 150px !important;
+  }
+
+  #application-content-table {
+    flex: 3;
+  }
+
+  #filestable .timecol {
+    width: 70px !important;
+  }
+
+  #filestable .buttoncol {
+    padding-left: 7px;
+    padding-right: 7px;
+    width: 46px !important;
+  }
 }

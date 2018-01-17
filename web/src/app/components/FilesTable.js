@@ -24,7 +24,7 @@ const FilesTable = ({
           <th className="filecol">
             <span>File</span>
           </th>
-          <th className="sizecol">
+          <th className="sizecol hide-on-small">
             <span>Size</span>
           </th>
           <th className="buttoncol" />
@@ -35,26 +35,27 @@ const FilesTable = ({
         {files && orderby(files, ['mtime'], ['desc']).map(fileobj => (
           <tr key={fileobj.id}>
             <td className="timecol">
-              <span>{timestamp(fileobj.mtime)}</span>
+              <span className="hide-on-large">{timestamp(fileobj.mtime, true)}</span>
+              <span className="hide-on-small">{timestamp(fileobj.mtime)}</span>
             </td>
             <td className="filecol">
               <span>{fileobj.name}</span>
             </td>
-            <td className="sizecol">
+            <td className="sizecol hide-on-small">
               <span>{fileobj.size}</span>
             </td>
             <td className="buttoncol">
               <button className="btn button-negative"
                 onClick={() => onDeleteHandler(fileobj)}>
                 <i className="icon icon-trash" />
-                <span>Delete</span>
+                <span className="hide-on-small">Delete</span>
               </button>
             </td>
             <td className="buttoncol">
               <button className="btn button-positive"
                 onClick={() => onDownloadHandler(fileobj)}>
                 <i className="icon icon-install" />
-                <span>Download</span>
+                <span className="hide-on-small">Download</span>
               </button>
             </td>
           </tr>

@@ -32,7 +32,7 @@ if (!$exists) {
         $value = trim($value);
         array_push($lines, $value);
       }
-      fputcsv($outputcsv, $lines, $_SPLITTER, $_ENCLOSURE);
+      fputcsv($outputcsv, $lines, $_SPLITTER);
     }
     fclose($handle);
   }
