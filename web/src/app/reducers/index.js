@@ -14,6 +14,8 @@ const loading = (state = false, action) => {
 
 const files = (state = [], action) => {
   switch (action.type) {
+  case 'onFileDeleted':
+    return state.filter(obj => (obj.id !== action.fileid));
   case 'onFileUploaded':
     return state.concat([action.file]);
   default:
@@ -32,6 +34,11 @@ const error = (state = false, action) => {
   }
 };
 
+// redux-persist whitelist
+export const whitelist = [
+  'files'
+];
+
 export const reducers = combineReducers({
   files,
   error,
@@ -39,5 +46,3 @@ export const reducers = combineReducers({
   // !!! always last
   router: routerReducer
 });
-
-export default reducers;

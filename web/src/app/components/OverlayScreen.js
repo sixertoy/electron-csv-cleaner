@@ -8,7 +8,7 @@ import loader from './../../assets/loader.svg';
 
 const renderLoader = () => (
   <div className="loader">
-    <img src={loader} className="App-logo" alt="logo" />
+    <img src={loader} className="app-loader" alt="loader" />
   </div>
 );
 const renderError = (message, discardHandler) => (

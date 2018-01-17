@@ -4,6 +4,7 @@ import { Route } from 'react-router';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
+import { PersistGate } from 'redux-persist/lib/integration/react';
 
 
 // application
@@ -13,14 +14,16 @@ import Application from './app/Application';
 
 // application
 const history = createHistory();
-const store = configure(history);
+const { store, persistor } = configure(history);
 const Root = () => (
   <Provider store={store}>
-    <ConnectedRouter history={history} >
-      <div id="react-container" className="relative flex-columns">
-        <Route path="/" component={Application} />
-      </div>
-    </ConnectedRouter>
+    <PersistGate loading="loading..." persistor={persistor}>
+      <ConnectedRouter history={history} >
+        <div id="react-container" className="relative flex-columns">
+          <Route path="/" component={Application} />
+        </div>
+      </ConnectedRouter>
+    </PersistGate>
   </Provider>
 );
 

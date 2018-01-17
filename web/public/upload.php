@@ -18,4 +18,3 @@ if (isset($_FILES['file'])) {
   send_response(false, 'Unable to upload file');
   exit;
 }
-?>

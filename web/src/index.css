@@ -1,6 +1,45 @@
 @import url('./css/base.css');
 @import url('./css/photon.css');
 
+/*
+
+START PHOTON OVERRIDE
+
+*/
+.btn,
+.btn * {
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn,
+a.btn {
+  color: white;
+  text-decoration: none;
+}
+
+.btn .icon {
+  color: white;
+  margin-right: 7px;
+}
+
+.button-warning {
+  background-color: #FCAA0E;
+  border-color: #FCAA0E #FCAA0E #EE9D02;
+}
+
+.button-negative {
+  background-color: #FB2F29;
+  border-color: #FB2F29 #FB2F29 #FB1710;
+}
+
+.button-positive {
+  background-color: #248B34;
+  border-color: #29A03B #29A03B #248B34;
+}
+
+/* END PHOTON OVERRIDE */
+
 body {
   background-color: #F1F1F1;
   font-family: helvetica, arial, sans-serif;

@@ -1,27 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 // application
 import './applicationfooter.css';
 
-const ApplicationFooter = ({
-  onClearHandler
-}) => (
+const ApplicationFooter = () => (
   <div id="application-footer">
     <footer className="toolbar toolbar-footer">
       <div className="toolbar-actions">
+        {/*
         <button onClick={onClearHandler}
-          className="btn btn-default">
+          className="btn button-warning btn-large pull-right">
           <i className="icon icon-trash" />
           <span>Clear</span>
         </button>
+        */}
       </div>
     </footer>
   </div>
 );
 
-ApplicationFooter.propTypes = {
-  onClearHandler: PropTypes.func.isRequired
-};
+ApplicationFooter.propTypes = {};
 
 export default ApplicationFooter;
