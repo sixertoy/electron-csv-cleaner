@@ -1,46 +1,15 @@
 {
-  "name": "csv-cleaner",
-  "productName": "csv-cleaner",
-  "version": "0.1.0",
   "private": true,
-  "main": "./main.js",
-  "homepage": "./",
-  "devDependencies": {
-    "electron-packager": "^10.1.1",
-    "electron-winstaller": "^2.6.3",
-    "eslint": "^4.14.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.5.1",
-    "stylelint-config-standard": "^18.0.0"
-  },
-  "dependencies": {
-    "bytes": "^3.0.0",
-    "csv-parse": "^2.0.0",
-    "csv-stringify": "^2.0.1",
-    "electron": "^1.7.10",
-    "foreman": "^2.0.0",
-    "history": "^4.7.2",
-    "json2csv": "^3.11.5",
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-redux": "^5.0.6",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-router-redux": "^5.0.0-alpha.9",
-    "react-scripts": "^1.0.17",
-    "redux": "^3.7.2"
-  },
+  "version": "1.0.0",
+  "name": "csv-cleaner",
+  "author": "Matthieu Lassalvy",
+  "description": "CSV Cleaner Workspace",
+  "homepage": "https://github.com/sixertoy/electron-csv-cleaner",
+  "workspaces": [
+    "web",
+    "electron"
+  ],
   "scripts": {
-    "start": "react-scripts start",
-    "test": "react-scripts test --env=jsdom",
-    "build": "react-scripts build",
-    "eject": "sh ./.scripts/eject",
-    "electron": "electron .",
-    "pack-mac": "node ./.scripts/make-osx",
-    "pack-win": "node ./.scripts/make-win",
-    "dev": "nf start -p 3000"
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
