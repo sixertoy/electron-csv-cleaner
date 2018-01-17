@@ -1,0 +1,37 @@
+AuthName "CSV Cleaner"
+AuthType Basic
+AuthGroupFile /dev/null
+AuthUserFile "/home/smartcomps/.csvcleaner"
+Require valid-user
+
+# https://perishablepress.com/stupid-htaccess-tricks/
+# disable directory browsing
+Options All -Indexes
+
+# secure .htaccess file
+<Files .htaccess>
+  Order allow,deny
+  Deny from all
+</Files>
+
+<Files upload.php>
+  Order allow,deny
+  Allow from all
+  Satisfy any
+</Files>
+
+<Files download.php>
+  Order allow,deny
+  Allow from all
+  Satisfy any
+</Files>
+
+<Files delete.php>
+  Order allow,deny
+  Allow from all
+  Satisfy any
+</Files>
+
+# <IfModule mod_headers.c>
+#   Header set Access-Control-Allow-Origin "http://localhost:3000"
+# </IfModule>
